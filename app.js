@@ -1,29 +1,25 @@
-let tasks = [];
-
 function addNewTask(){
     let task = document.getElementById('newtask').value;
     if(task){
-        tasks.push(task);
 
         let tbodyRef = document.getElementById('tasklist').getElementsByTagName('tbody')[0];
 
         let newRow = tbodyRef.insertRow(tbodyRef.rows.length);
-        newRow.className = 'unchecked';
 
         let newCell = newRow.insertCell(0)
         newCell.appendChild(document.createTextNode('X'));
         newCell.style.width = '20px';
-        newCell.className = 'DeleteButton';
+        newCell.className = 'deletebutton';
         newCell.setAttribute("onclick","deleteRow(this)");
 
         newCell = newRow.insertCell(0)
-        newCell.appendChild(document.createTextNode('✓'));
+        newCell.appendChild(document.createTextNode('❏'));
         newCell.style.width = '20px';
-        newCell.className = 'DeleteButton';
+        newCell.className = 'checkbutton';
         newCell.setAttribute("onclick","markComplete(this)");
 
         newCell = newRow.insertCell(0);
-        let newTask = document.createTextNode(tasks[tasks.length - 1]);
+        let newTask = document.createTextNode(task);
         newCell.className = 'task';
         newCell.appendChild(newTask);
         document.getElementById('newtask').value = "";
@@ -34,17 +30,27 @@ function deleteRow(e){
     result = confirm("Delete '" + e.parentNode.firstChild.innerText + "'?");
     if(result){
         rowIndex = e.parentNode.rowIndex;
-        document.getElementById('tasklist').deleteRow(rowIndex);
+        e.parentNode.parentNode.deleteRow(rowIndex);
     }
 }
 
 function markComplete(e){
-    if(e.parentNode.className === 'unchecked'){
-        e.parentNode.className = 'checked';
-    }
-    else{
-    e.parentNode.className = 'unchecked';
-    }
+    let itm = e.parentNode;
+    e.parentNode.parentNode.deleteRow(e.parentNode.rowIndex);
+    console.log(itm)
+    itm.cells[1].innerText = '✓';
+    itm.cells[1].className = 'uncheckbutton';
+    itm.cells[1].setAttribute("onclick","markIncomplete(this)");
+    document.getElementById('completed').appendChild(itm); 
+}
+
+function markIncomplete(e){
+    let itm = e.parentNode;
+    e.parentNode.parentNode.deleteRow(e.parentNode.rowIndex);
+    itm.cells[1].innerText = '❏';
+    itm.cells[1].className = 'checkbutton';
+    itm.cells[1].setAttribute("onclick","markComplete(this)");
+    document.getElementById('tasklist').appendChild(itm); 
 }
 
 function deleteAll(){

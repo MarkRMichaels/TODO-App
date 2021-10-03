@@ -16,28 +16,16 @@
         padding: 0;
         text-align: center;
     }
-    table, th{
+    table{
         width: 60%;
         margin: auto;
         padding: 0;
         text-align: center;
-        border:0; 
-        border-collapse:collapse;
+        border: 1px solid black;
+        border-collapse: collapse;
+        max-width: 700px;
     }
-    td{
-        text-align: center;
-        margin: auto;
-        margin: 0px;
-        padding: 0;
-    }
-    .task {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        margin: auto;
-    }
-    .checked {
-        background-color: rgb(0, 60, 0);
-    }
-    .unchecked {
+    th{
         background: -moz-linear-gradient(top,  rgba(0, 10, 145, 0.2) 0%, rgba(0, 217, 255, 0.2) 60%, rgba(0, 217, 255, 0.2) 100%); /* FF3.6+ */
         background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(40%,rgba(108,211,229,0.2)), color-stop(60%,rgba(108,211,229,0.2))); /* Chrome,Safari4+ */
         background: -webkit-linear-gradient(top,  rgba(0, 10, 145, 0.2) 0%, rgba(0, 217, 255, 0.2) 60%, rgba(0, 217, 255, 0.2) 100%); /* Chrome10+,Safari5.1+ */
@@ -46,18 +34,59 @@
         background: linear-gradient(to bottom,  rgba(0, 10, 145, 0.2) 0%, rgba(0, 217, 255, 0.2) 60%, rgba(0, 217, 255, 0.2) 100%); /* W3C */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */            
     }
+    td{
+        text-align: center;
+        margin: auto;
+        margin: 0px;
+        padding: 0;
+        background-color: white;
+    }
     </style>
 </head>
 <body>
     <label for="newtask">New Task:</label>
     <input type="text" id="newtask" name="newtask" onkeypress="ExplicitPrevention(event)">
     <input type="button" value="Submit" onclick="addNewTask()">
-
     <input type="button" onclick="deleteAll()" value="Delete All">
+    <br>
+    <br>
 
     <table class="tasklist" id="tasklist">
         <tbody>
-
+            <tr>
+                <th>
+                    TO DO:
+                </th>
+                <th width='20px'>
+                    
+                </th>
+                <th width='20px'>
+                    
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table class="completed" id="completed" top="50%">
+        <tbody>
+            <tr>
+                <th>
+                    Done:
+                </th>
+                <th width='20px'>
+                    
+                </th>
+                <th width='20px'>
+                    
+                </th>
+            </tr>
         </tbody>
     </table>
 
